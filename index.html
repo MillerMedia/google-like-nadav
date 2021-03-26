@@ -1190,10 +1190,9 @@
 	<div id="message-box" class="LS8OJ" style="display:none;" data-state="unchanged">For the full Nadav experience, please type more slowly.</div>
 	<div id="keypress" data-state="go"></div>
 	<script>
-	// Sausage finger values
+	// Sausage finger function
 	function sausage_fingers(key_pressed){
 		// First get relevant other keys that could be hit
-		return_value = []
 		switch(String(key_pressed)) {
 			case '1':
 				return_values = ['2','q'];
@@ -1304,8 +1303,22 @@
 	    		return_values = ['j','k','n',','];
 	    		break;
 	  		default:
-	    	// code block
+	  			return_values = [key_pressed]
+	  			break;
 		}
+
+		if return_values.length==0:
+			return return_values;
+
+		/*
+			When a user types a key, it will type 1 to 3 characters, as if you had sausage fingers like Nadav.
+
+			Let's generate a number 1-3
+		*/
+		number_of_keys_pressed = Math.floor(Math.random() * 3) + 1;
+		let random_values = array.sort(() => .5 - Math.random()).slice(0,number_of_keys_pressed);
+		random_values.push(key_pressed);
+		return random_values;
 	}
 
 	jQuery('.gLFyf').keydown(function(event) {
@@ -1332,7 +1345,7 @@
 			return true;
 		} else if(jQuery('#keypress').data('state') == 'stop') {
 			if(!jQuery('#message-box').is(':visible')) {
-				message_array = ["Slow down there chomo.", "Testing."];
+				message_array = ["Slow down there chomo."];
 				random_message = message_array[Math.floor(Math.random() * message_array.length)];
 				message_box = jQuery('#message-box');
 				if(jQuery('#message-box').data('state') == 'changed') {
