@@ -1190,6 +1190,124 @@
 	<div id="message-box" class="LS8OJ" style="display:none;" data-state="unchanged">For the full Nadav experience, please type more slowly.</div>
 	<div id="keypress" data-state="go"></div>
 	<script>
+	// Sausage finger values
+	function sausage_fingers(key_pressed){
+		// First get relevant other keys that could be hit
+		return_value = []
+		switch(String(key_pressed)) {
+			case '1':
+				return_values = ['2','q'];
+				break;
+			case '2':
+				return_values = ['1','3','q','w'];
+	    		break;
+	    	case '3':
+	    		return_values = ['2','4','w','e'];
+	    		break;
+	    	case '4':
+	    		return_values = ['5','3','e','r'];
+	    		break;
+	    	case '5':
+	    		return_values = ['4','6','r','t'];
+	    		break;
+	    	case '6':
+	    		return_values = ['5','7','t','y'];
+	    		break;
+	    	case '7':
+	    		return_values = ['6','8','y','u'];
+	    		break;
+	    	case '8':
+	    		return_values = ['7','9','u','i'];
+	    		break;
+	    	case '9':
+	    		return_values = ['8','0','i','o'];
+	    		break;
+	    	case '0':
+	    		return_values = ['9','o','p','-'];
+	    		break;
+	    	case 'q':
+	    		return_values = ['1','2','w','a'];
+	    		break;
+	    	case 'w':
+	    		return_values = ['2','3','q','e','s'];
+	    		break;
+	    	case 'e':
+	    		return_values = ['3','4','w','r','d'];
+	    		break;
+	    	case 'r':
+	    		return_values = ['4','5','e','t','f'];
+	    		break;
+	    	case 't':
+	    		return_values = ['5','6','r','y','g'];
+	    		break;
+	    	case 'y':
+	    		return_values = ['6','7','t','u','h'];
+	    		break;
+	    	case 'u':
+	    		return_values = ['7','8','y','i','j'];
+	    		break;
+	    	case 'i':
+	    		return_values = ['8','9','u','o','k'];
+	    		break;
+	    	case 'o':
+	    		return_values = ['9','0','i','p','l'];
+	    		break;
+	    	case 'p':
+	    		return_values = ['0','-','o','[',';'];
+	    		break;
+	    	case 'a':
+	    		return_values = ['q','w','s','z'];
+	    		break;
+	    	case 's':
+	    		return_values = ['w','a','d','x','z'];
+	    		break;
+	    	case 'd':
+	    		return_values = ['e','f','c','x','s'];
+	    		break;
+	    	case 'f':
+	    		return_values = ['r','d','g','c','v'];
+	    		break;
+	    	case 'g':
+	    		return_values = ['t','f','h','v','b'];
+	    		break;
+	    	case 'h':
+	    		return_values = ['y','g','j','b','n'];
+	    		break;
+	    	case 'j':
+	    		return_values = ['u','h','k','n','m'];
+	    		break;
+	    	case 'k':
+	    		return_values = ['i','j','l','m',','];
+	    		break;
+	    	case 'l':
+	    		return_values = ['o','k',';',',','.'];
+	    		break;
+	    	case 'z':
+	    		return_values = ['a','s','x'];
+	    		break;
+	    	case 'x':
+	    		return_values = ['s','d','z','c'];
+	    		break;
+	    	case 'c':
+	    		return_values = ['d','f','x','v'];
+	    		break;
+	    	case 'v':
+	    		return_values = ['f','g','c','b'];
+	    		break;
+	    	case 'b':
+	    		return_values = ['g','h','v','n'];
+	    		break;
+	    	case 'n':
+	    		return_values = ['h','j','b','m'];
+	    		break;
+	    	case 'm':
+	    		return_values = ['j','k','n',','];
+	    		break;
+	  		default:
+	    	// code block
+		}
+	}
+
 	jQuery('.gLFyf').keydown(function(event) {
 		key_pressed = event.key.toLowerCase();
 		if(key_pressed == 'backspace' || (!/[a-z0-9]/i.test(String.fromCharCode(event.keyCode)) && event.keyCode != 8 && event.keyCode != 32)) {
