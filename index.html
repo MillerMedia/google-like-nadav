@@ -5,8 +5,17 @@
 	<title>Google Like Nadav</title>
 	<link rel="shortcut icon" type="image/png" href="https://googlelikenadav.s3.amazonaws.com/favicon.png" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+	<style>
+	body, input, button {
+	    font-size: 14px;
+	    font-family: arial,sans-serif;
+	    color: #222;
+	}
+	body {
+		margin-bottom:0px;
+	}
+	</style>
 </head>
-
 <body>
 	<div class="o3j99 LLD4me yr19Zb LS8OJ" style="margin-top: 50px;">
 		<style data-iml="1616046656470">
@@ -1189,7 +1198,14 @@
 	</div>
 	<div id="message-box" class="LS8OJ" style="display:none;" data-state="unchanged">For the full Nadav experience, please type more slowly.</div>
 	<div id="keypress" data-state="go"></div>
+	<div class="o3j99 c93Gbe"><style data-iml="1616743172153">.c93Gbe{background:#f2f2f2;display:none;}.uU7dJb{padding:15px 30px;border-bottom:1px solid #dadce0;font-size:15px;color:rgba(0,0,0,.54)}.SSwjIe{padding:0 20px}.KxwPGc{display:flex;flex-wrap:wrap;justify-content:space-between}@media only screen and (max-width:1200px){.KxwPGc{justify-content:space-evenly}}.pHiOh{display:block;padding:15px;white-space:nowrap}a.pHiOh{color:#70757a}.ktLKi{white-space:nowrap;vertical-align:top}.Pb9hCb{height:14px;margin-right:6px}.ssOUyb{order:2}@media only screen and (max-width:1200px){.ssOUyb{order:0;width:100%;justify-content:center}}.waLeGd .ssOUyb{order:0;width:100%;justify-content:center}.AghGtd{justify-content:flex-start;min-width:30%;order:1}.iTjxkf{justify-content:flex-end;min-width:30%;order:3}</style><div jscontroller="BLvsRb" class="KxwPGc SSwjIe" data-sfe="true" data-sfsw="1200" jsaction="rcuQ6b:npT2md"><div class="KxwPGc AghGtd"></div><div class="KxwPGc ssOUyb"><a class="pHiOh" href="https://sustainability.google/commitments/?utm_source=googlehpfooter&amp;utm_medium=housepromos&amp;utm_campaign=bottom-footer&amp;utm_content="><span class="ktLKi">Carbon neutral since 2007</span></a></div><div class="KxwPGc iTjxkf"><div jscontroller="HFyn5c" class="ayzqOc"><style data-iml="1616743172153">.ayzqOc{position:relative}.EzVRq{display:block;padding:15px;white-space:nowrap}a.EzVRq,button.EzVRq{color:#70757a}button.EzVRq{cursor:pointer;width:100%;text-align:left}button.EzVRq:hover,button.EzVRq:active{text-decoration:underline}.Qff0zd{display:none;position:absolute;list-style:none;background:#fff;border:1px solid #70757a}</style></div></div></div></div>
 	<script>
+	if(localStorage.getItem('v1.1') != 'true'){
+		jQuery('.c93Gbe').show();
+	}
+
+	localStorage.setItem('v1.1', 'true');
+
 	// Sausage finger function
 	function sausage_fingers(key_pressed){
 		// First get relevant other keys that could be hit
@@ -1303,12 +1319,13 @@
 	    		return_values = ['j','k','n',','];
 	    		break;
 	  		default:
-	  			return_values = [key_pressed]
+	  			return_values = [key_pressed];
 	  			break;
 		}
 
-		if return_values.length==0:
+		if(return_values.length==0){
 			return return_values;
+		}
 
 		/*
 			When a user types a key, it will type 1 to 3 characters, as if you had sausage fingers like Nadav.
@@ -1316,8 +1333,8 @@
 			Let's generate a number 1-3
 		*/
 		number_of_keys_pressed = Math.floor(Math.random() * 3) + 1;
-		let random_values = array.sort(() => .5 - Math.random()).slice(0,number_of_keys_pressed);
-		random_values.push(key_pressed);
+		let random_values = return_values.sort(() => .5 - Math.random()).slice(0,(number_of_keys_pressed-1));
+		random_values.unshift(key_pressed);
 		return random_values;
 	}
 
@@ -1342,7 +1359,14 @@
 			setTimeout(function() {
 				jQuery('#keypress').data('state', 'go');
 			}, 3000);
-			return true;
+
+			// Get sausage finger value
+			keys = sausage_fingers(key_pressed);
+			jQuery("input.gLFyf.gsfi").val(function() {
+			    return this.value + keys.join('');
+			});
+
+			return false;
 		} else if(jQuery('#keypress').data('state') == 'stop') {
 			if(!jQuery('#message-box').is(':visible')) {
 				message_array = ["Slow down there chomo."];
